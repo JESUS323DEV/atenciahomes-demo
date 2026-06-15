@@ -62,10 +62,10 @@ export default function Hero() {
       />
       <div className="absolute inset-0 bg-gradient-to-r from-[#08101e]/70 via-[#08101e]/60 to-[#08101e]/45" />
 
-      <div className="relative z-10 lg:h-full flex lg:w-450 lg:mx-auto">
+      <div className="relative z-10 lg:h-full flex w-full">
 
         {/* LEFT: texto + trust bar + carrusel móvil */}
-        <div className="w-full lg:w-1/1 flex flex-col xl:items-center pt-[72px]">
+        <div className="w-full lg:w-1/2 flex flex-col pt-[72px]">
 
           <div className="flex-1 flex flex-col justify-center px-8 lg:px-12 xl:px-16 pb-4">
             <div className="w-10 h-[3px] bg-[#ffc800] rounded-full mb-5" aria-hidden="true" />
@@ -174,7 +174,7 @@ export default function Hero() {
         </div>
 
         {/* RIGHT: galería desktop */}
-        <div className="hidden lg:flex lg:w-1/1 h-230 items-center pt-[72px] pb-[140px] px-8 xl:px-10">
+        <div className="hidden lg:flex lg:w-1/2 items-center pt-[72px] pb-[120px] px-6 xl:px-10">
           <div className="grid grid-cols-2 grid-rows-3 gap-2 w-full h-full rounded-2xl overflow-hidden">
             <img src={hab3} alt="Propiedad Atencia Homes" className="row-span-2 w-full h-full object-cover object-center" fetchPriority="high" />
             <img src={hab2} alt="Propiedad Atencia Homes" className="w-full h-full object-cover" fetchPriority="high" />
