@@ -74,7 +74,7 @@ export default function Hero() {
               Descubre cómo alquilar tu vivienda maximizando tus ingresos.
             </p>
 
-            <h1 className="text-[1.85rem] sm:text-[2.4rem] xl:text-[4rem] font-extrabold text-white leading-[1.15] mb-5 max-w-lg">
+            <h1 className="text-[1.85rem] sm:text-[2.4rem] lg:text-[1.9rem] xl:text-[3.2rem] 2xl:text-[4rem] font-extrabold text-white leading-[1.15] mb-5 max-w-lg">
               Brindamos soluciones a propietarios que no desean preocuparse por su alquiler.
             </h1>
 
@@ -174,8 +174,8 @@ export default function Hero() {
         </div>
 
         {/* RIGHT: galería desktop */}
-        <div className="hidden lg:flex lg:w-1/2 items-center pt-[72px] pb-[120px] px-6 xl:px-10">
-          <div className="grid grid-cols-2 grid-rows-3 gap-2 w-full h-full rounded-2xl overflow-hidden">
+        <div className="hidden lg:flex flex-col lg:w-1/2 pt-[72px] pb-14 px-6 xl:px-10">
+          <div className="flex-1 grid grid-cols-2 grid-rows-3 gap-2 rounded-2xl overflow-hidden min-h-0">
             <img src={hab3} alt="Propiedad Atencia Homes" className="row-span-2 w-full h-full object-cover object-center" fetchPriority="high" />
             <img src={hab2} alt="Propiedad Atencia Homes" className="w-full h-full object-cover" fetchPriority="high" />
             <img src={hab1} alt="Propiedad Atencia Homes" className="w-full h-full object-cover" />
