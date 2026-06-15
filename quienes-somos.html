@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>Sobre Nosotros | Atencia Homes</title>
+  <meta name="description" content="Conoce a Atencia Homes. Somos especialistas en gestión de alquileres rent to rent. Ayudamos a propietarios a maximizar sus ingresos sin preocupaciones." />
+  <link rel="canonical" href="https://atenciahomes.com/quienes-somos" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://atenciahomes.com/quienes-somos" />
+  <meta property="og:title" content="Sobre Nosotros | Atencia Homes" />
+  <meta property="og:description" content="Somos especialistas en gestión de alquileres rent to rent coliving." />
+  <meta property="og:image" content="/img/og-image.jpg" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/img/logo_sin_espacio_extra.png" />
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body class="font-sans bg-white text-gray-900 antialiased">
+
+  <!-- Navbar (mismo que index) -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-[#154360] shadow-lg transition-all duration-300">
+    <nav class="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="/" class="flex-shrink-0">
+        <img src="/img/logo_sin_espacio_extra.png" alt="Atencia Homes" class="h-10 w-auto" />
+      </a>
+      <ul class="hidden lg:flex items-center gap-8 text-sm font-medium">
+        <li><a href="/#como-funciona" class="text-white/90 hover:text-[#ffc800] transition-colors duration-200">¿Cómo funciona?</a></li>
+        <li><a href="/#propietarios" class="text-white/90 hover:text-[#ffc800] transition-colors duration-200">Propietarios</a></li>
+        <li><a href="quienes-somos.html" class="text-[#ffc800] font-semibold">Sobre nosotros</a></li>
+        <li><a href="#preguntas-frecuentes" class="text-white/90 hover:text-[#ffc800] transition-colors duration-200">FAQ</a></li>
+      </ul>
+      <div class="flex items-center gap-4">
+        <a href="https://wa.me/34642429362" target="_blank" rel="noopener noreferrer"
+          class="hidden sm:inline-flex items-center gap-2 bg-[#ffc800] hover:bg-yellow-400 text-[#154360] font-semibold text-sm px-5 py-2.5 rounded-full transition-colors duration-200">
+          Hablar con nosotros
+        </a>
+        <button id="menu-toggle" aria-label="Abrir menú" class="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5">
+          <span class="block w-6 h-0.5 bg-white"></span>
+          <span class="block w-6 h-0.5 bg-white"></span>
+          <span class="block w-6 h-0.5 bg-white"></span>
+        </button>
+      </div>
+    </nav>
+    <div id="mobile-menu" class="lg:hidden hidden bg-[#154360] border-t border-white/10">
+      <ul class="max-w-7xl mx-auto px-6 py-6 flex flex-col gap-4 text-sm font-medium">
+        <li><a href="/#como-funciona" class="block text-white/90 hover:text-[#ffc800] transition-colors py-1">¿Cómo funciona?</a></li>
+        <li><a href="/#propietarios" class="block text-white/90 hover:text-[#ffc800] transition-colors py-1">Propietarios</a></li>
+        <li><a href="quienes-somos.html" class="block text-[#ffc800] font-semibold py-1">Sobre nosotros</a></li>
+        <li><a href="#preguntas-frecuentes" class="block text-white/90 hover:text-[#ffc800] transition-colors py-1">FAQ</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Contenido se añadirá sección por sección -->
+  <main class="pt-20">
+    <div id="quienes-somos"></div>
+    <div id="preguntas-frecuentes"></div>
+  </main>
+
+  <script>
+    const toggle = document.getElementById('menu-toggle')
+    const mobileMenu = document.getElementById('mobile-menu')
+    toggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden')
+    })
+  </script>
+</body>
+</html>
