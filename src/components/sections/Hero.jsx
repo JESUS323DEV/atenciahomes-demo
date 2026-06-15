@@ -49,10 +49,9 @@ export default function Hero() {
   }, [next])
 
   return (
-    // lg: altura fija viewport — móvil: crece para acomodar el carrusel debajo
-    <section id="hero" aria-label="Inicio" className="relative sm:pt-15 lg:h-screen lg:overflow-hidden">
+    <section id="hero" aria-label="Inicio" className="relative xl:h-screen xl:overflow-hidden">
 
-      {/* Fondo full-width */}
+      {/* Fondo */}
       <img
         src={bgHero}
         alt=""
@@ -62,19 +61,21 @@ export default function Hero() {
       />
       <div className="absolute inset-0 bg-gradient-to-r from-[#08101e]/70 via-[#08101e]/60 to-[#08101e]/45" />
 
-      <div className="relative z-10 lg:h-full flex w-full">
+      {/* Contenedor con max-width: evita que el layout se estire más allá de 1400px */}
+      <div className="relative z-10 lg:max-w-[1400px] lg:mx-auto lg:grid lg:grid-cols-2 xl:h-full">
 
-        {/* LEFT: texto + trust bar + carrusel móvil */}
-        <div className="w-full lg:w-1/2 flex flex-col pt-[72px]">
+        {/* COLUMNA IZQUIERDA */}
+        <div className="pt-[72px] flex flex-col xl:h-full xl:justify-between">
 
-          <div className="flex-1 flex flex-col justify-center px-8 lg:px-12 xl:px-16 pb-4">
+          {/* Bloque de texto — mismo padding que el original */}
+          <div className="px-8 lg:px-12 xl:px-16 pt-10 lg:pt-14 pb-4">
             <div className="w-10 h-[3px] bg-[#ffc800] rounded-full mb-5" aria-hidden="true" />
 
             <p className="text-[#ffc800] text-xs sm:text-sm font-bold uppercase tracking-widest leading-relaxed mb-4 max-w-sm">
               Descubre cómo alquilar tu vivienda maximizando tus ingresos.
             </p>
 
-            <h1 className="text-[1.85rem] sm:text-[2.4rem] lg:text-[1.9rem] xl:text-[3.2rem] 2xl:text-[4rem] font-extrabold text-white leading-[1.15] mb-5 max-w-lg">
+            <h1 className="text-[1.85rem] sm:text-[2.4rem] xl:text-[4rem] font-extrabold text-white leading-[1.15] mb-5 max-w-lg">
               Brindamos soluciones a propietarios que no desean preocuparse por su alquiler.
             </h1>
 
@@ -85,19 +86,46 @@ export default function Hero() {
               <span className="text-white/70 text-sm">Somos tu inquilino perfecto.</span>
             </div>
 
-            <div>
-              <a
-                href="https://wa.me/34642429362"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 self-start bg-[#154360] hover:bg-[#1e6090] text-white font-semibold text-sm px-7 py-3.5 rounded-xl transition-colors duration-200"
-              >
-                <WaIcon /> Solicita tu estudio gratuito
-              </a>
+            <a
+              href="https://wa.me/34642429362"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-[#154360] hover:bg-[#1e6090] text-white font-semibold text-sm px-7 py-3.5 rounded-xl transition-colors duration-200"
+            >
+              <WaIcon /> Solicita tu estudio gratuito
+            </a>
+          </div>
+
+          {/* Carrusel móvil */}
+          <div className="lg:hidden relative overflow-hidden h-64">
+            <div
+              className="flex h-full transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${slide * 100}%)` }}
+            >
+              {mobileSlides.map((src, i) => (
+                <img key={i} src={src} alt="Propiedad Atencia Homes" className="w-full h-full flex-shrink-0 object-cover" />
+              ))}
+            </div>
+            <button onClick={prev} aria-label="Imagen anterior" className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center transition-colors">
+              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button onClick={next} aria-label="Imagen siguiente" className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center transition-colors">
+              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+              {mobileSlides.map((_, i) => (
+                <button key={i} onClick={() => setSlide(i)} aria-label={`Ir a imagen ${i + 1}`}
+                  className={`rounded-full transition-all duration-300 ${i === slide ? 'w-4 h-1.5 bg-[#ffc800]' : 'w-1.5 h-1.5 bg-white/50'}`}
+                />
+              ))}
             </div>
           </div>
 
-          {/* Trust bar */}
+          {/* Trust bar — anclado abajo por justify-between del padre */}
           <div className="border-t border-white/10 grid grid-cols-2 sm:grid-cols-4">
             {trustItems.map((item, i) => (
               <div
@@ -117,65 +145,11 @@ export default function Hero() {
             ))}
           </div>
 
-          {/* Carrusel móvil (oculto en desktop) */}
-          <div className="lg:hidden relative overflow-hidden h-64">
-            {/* Track deslizante */}
-            <div
-              className="flex h-full transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${slide * 100}%)` }}
-            >
-              {mobileSlides.map((src, i) => (
-                <img
-                  key={i}
-                  src={src}
-                  alt="Propiedad Atencia Homes"
-                  className="w-full h-full flex-shrink-0 object-cover"
-                />
-              ))}
-            </div>
-
-            {/* Flecha izquierda */}
-            <button
-              onClick={prev}
-              aria-label="Imagen anterior"
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center transition-colors"
-            >
-              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-
-            {/* Flecha derecha */}
-            <button
-              onClick={next}
-              aria-label="Imagen siguiente"
-              className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center transition-colors"
-            >
-              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-
-            {/* Dots */}
-            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
-              {mobileSlides.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setSlide(i)}
-                  aria-label={`Ir a imagen ${i + 1}`}
-                  className={`rounded-full transition-all duration-300 ${
-                    i === slide ? 'w-4 h-1.5 bg-[#ffc800]' : 'w-1.5 h-1.5 bg-white/50'
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-
         </div>
 
-        {/* RIGHT: galería desktop */}
-        <div className="hidden lg:flex flex-col lg:w-1/2 pt-[72px] pb-14 px-6 xl:px-10">
-          <div className="flex-1 grid grid-cols-2 grid-rows-3 gap-2 rounded-2xl overflow-hidden min-h-0">
+        {/* COLUMNA DERECHA — galería desktop con altura explícita */}
+        <div className="hidden lg:flex items-center lg:pt-[100px]  xl:pt-[0] pb-16 px-8 ">
+          <div className="grid grid-cols-2 grid-rows-3 gap-2 w-full h-[min(72vh,600px)] rounded-2xl overflow-hidden">
             <img src={hab3} alt="Propiedad Atencia Homes" className="row-span-2 w-full h-full object-cover object-center" fetchPriority="high" />
             <img src={hab2} alt="Propiedad Atencia Homes" className="w-full h-full object-cover" fetchPriority="high" />
             <img src={hab1} alt="Propiedad Atencia Homes" className="w-full h-full object-cover" />
